@@ -8,6 +8,7 @@ public class DB {
     public static final String URL = "jdbc:mysql://127.0.0.1:3306/book_shop?autoReconnect=true&useSSL=false";
     public static final String USER = "root";
     public static final String PASSWORD = "koodinh@";
+    public static final int PAGE_SIZE = 10;
 
     protected Connection connection;
     protected String tableName = "";

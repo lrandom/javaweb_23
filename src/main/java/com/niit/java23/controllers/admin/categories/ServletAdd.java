@@ -1,4 +1,4 @@
-package com.niit.java23.controllers.admin;
+package com.niit.java23.controllers.admin.categories;
 
 import com.niit.java23.dals.DalCategory;
 import com.niit.java23.models.Categories;

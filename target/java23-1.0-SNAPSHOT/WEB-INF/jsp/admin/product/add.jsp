@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: lrandom
@@ -24,6 +25,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/adminlte/css/adminlte.min.css">
+
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>tinymce.init({
+        selector:'#inputDescription',
+        height: 500,
+    });</script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -43,12 +51,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Add Category</h1>
+                        <h1 class="m-0">Add Product</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">Add Category</li>
+                            <li class="breadcrumb-item active">Add Product</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -66,14 +74,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <h3 class="card-title">Add</h3>
                             </div>
 
-                            <form method="post" action="${pageContext.request.contextPath}/admin-category-edit">
+                            <form method="post" enctype="multipart/form-data"
+                                  action="${pageContext.request.contextPath}/admin-product-add">
                                 <div class="card-body">
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">Name</label>
-                                        <input type="hidden" name="id" value="${category.getId()}"/>
-                                        <input type="text" name="name" value="${category.getName()}"
-                                               class="form-control" id="exampleInputEmail1"
+                                        <label for="inputImage">Image</label>
+                                        <input type="file" name="image" class="form-control" id="inputImage"
+                                               placeholder="Image">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputName">Name</label>
+                                        <input type="text" name="name" class="form-control" id="inputName"
                                                placeholder="Name">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputPrice">Price</label>
+                                        <input type="text" name="price" class="form-control" id="inputPrice"
+                                               placeholder="Price">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputDescription">Description</label>
+                                        <textarea name="description" class="form-control" id="inputDescription"
+                                                  placeholder="description"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="inputCategory">Category</label>
+                                        <select name="category" class="form-control" id="inputCategory">
+                                            <c:forEach items="${categories}" var="category">
+                                                <option value="${category.getId()}">${category.getName()}</option>
+                                            </c:forEach>
+                                        </select>
                                     </div>
                                 </div>
 

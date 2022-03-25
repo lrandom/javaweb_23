@@ -73,16 +73,28 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                     <tr>
                                         <th style="width: 10px">#</th>
                                         <th>Name</th>
-                                        <th style="width: 40px">Action</th>
+                                        <th>Action</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <c:forEach items="${list}" var="item">
-                                     <tr>
-                                        <td>${item.getId()}</td>
-                                        <td>${item.getName()}</td>
-                                        <td></td>
-                                     </tr>
+                                        <tr>
+                                            <td>${item.getId()}</td>
+                                            <td>${item.getName()}</td>
+                                            <td>
+                                                <a role="button"
+                                                   href="${pageContext.request.contextPath}/admin-category-edit?id=${item.getId()}"
+                                                   class="btn btn-warning">
+                                                    Edit
+                                                </a>
+                                                <a role="button"
+                                                   href="${pageContext.request.contextPath}/admin-category-list?action=DELETE&id=${item.getId()}"
+                                                   class="btn btn-danger"
+                                                   onclick="return confirm('Are you sure you want to delete this row ?')">
+                                                    Delete
+                                                </a>
+                                            </td>
+                                        </tr>
                                     </c:forEach>
 
                                     </tbody>
@@ -91,11 +103,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                             <div class="card-footer clearfix">
                                 <ul class="pagination pagination-sm m-0 float-right">
-                                    <li class="page-item"><a class="page-link" href="#">«</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">»</a></li>
+                                    <c:forEach begin="1" end="${totalPages+1}" var="item">
+                                        <li class="page-item ${page==item?'active':''}"><a class="page-link"
+                                                                                           href="?page=${item}">${item}</a>
+                                        </li>
+                                    </c:forEach>
                                 </ul>
                             </div>
                         </div>
