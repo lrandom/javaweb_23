@@ -31,6 +31,11 @@
     <c:out value="Bạn đã đủ tuổi tham gia"/>
 </c:if>
 
+<c:set value="Luan" var="myName"/>
+<c:out value="${myName}"/>
+
+${myName}
+
 <c:choose>
     <c:when test="${age==6}">
         <c:out value="Bạn là nhi đồng"/>
